@@ -40,6 +40,7 @@ try:
                 print("\n" + inputCity + " is currently fully booked :(")
                 inputEmail = input("\n" + "Would you like to receive an email when a spot becomes available? (Y/N): ")
                 if (inputEmail == "Y"):
+                    
                     content = "Covid vaccine is now AVAILABLE at " + inputCity + "\n\n BOOK NOW!"
 
                     mail = smtplib.SMTP('smtp.gmail.com', 587)
