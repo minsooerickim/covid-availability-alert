@@ -19,7 +19,7 @@ FROM_PASS = environ['FROM_PASS']
 TO_EMAIL = environ['TO_EMAIL']
 INPUT_CITY = environ['INPUT_CITY']
 
-PATH = "C:\\Users\\futur\\Documents\\Github\\covid-availability-alert\\chromedriver.exe"
+PATH = "C:\\Users\\futur\\Documents\\Github\\covid-availability-alert\\chromedriver"
 
 driver = webdriver.Chrome(PATH)
 
