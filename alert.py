@@ -19,7 +19,7 @@ FROM_PASS = environ['FROM_PASS']
 TO_EMAIL = environ['TO_EMAIL']
 INPUT_CITY = environ['INPUT_CITY']
 
-PATH = "C:\Program Files (x86)\chromedriver.exe"
+PATH = "C:\\Program Files (x86)\\chromedriver.exe"
 
 driver = webdriver.Chrome(PATH)
 
