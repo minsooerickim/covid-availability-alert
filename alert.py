@@ -26,9 +26,6 @@ FROM_PASS = environ['FROM_PASS']
 TO_EMAIL = environ['TO_EMAIL']
 INPUT_CITY = environ['INPUT_CITY']
 
-# locally running
-# driver = webdriver.Chrome('/Users/futur/Documents/Github/covid-availability-alert/chromedriver')
-
 driver.get('https://www.cvs.com/immunizations/covid-19-vaccine')
 print("\n\n" + driver.title + "\n\n")
 
@@ -51,7 +48,7 @@ def checkAvail():
                     mail.sendmail(FROM_EMAIL, TO_EMAIL, content)
                     mail.close()
                     print("\n" + INPUT_CITY + " is now Available! Email has been sent!")
-                    sleep()
+                    exit()
             Timer(10, checkAvail).start()
 
 checkVal = 0
