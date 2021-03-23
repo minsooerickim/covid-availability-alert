@@ -12,6 +12,9 @@ import smtplib
 
 from os import environ
 
+FROM_EMAIL = environ['FROM_EMAIL']
+FROM_PASS = environ['FROM_PASS']
+
 inputCity = input("Enter the City you want to check in the correct format (e.g Los Angeles, CA): ")
 
 PATH = "C:\Program Files (x86)\chromedriver.exe"
@@ -49,8 +52,8 @@ try:
                     mail.ehlo()
                     mail.starttls()
                     #change these to environ https://www.youtube.com/watch?v=iLvMYXKIcPo @ 5:11
-                    mail.login('DeveloperMinsoo@gmail.com', 'DeveloperMinsoo123')
-                    mail.sendmail('DeveloperMinsoo@gmail.com', 'minsooerickim@gmail.com', content)
+                    mail.login(FROM_EMAIL, FROM_PASS)
+                    mail.sendmail(FROM_EMAIL, 'minsooerickim@gmail.com', content)
                     mail.close()
                 else:
                     print("\nThank you for using covid-availability-alert!")
