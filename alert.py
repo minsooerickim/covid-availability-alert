@@ -10,6 +10,8 @@ from selenium.webdriver.support import expected_conditions as EC
 
 import smtplib
 
+from os import environ
+
 inputCity = input("Enter the City you want to check in the correct format (e.g Los Angeles, CA): ")
 
 PATH = "C:\Program Files (x86)\chromedriver.exe"
@@ -46,6 +48,7 @@ try:
                     mail = smtplib.SMTP('smtp.gmail.com', 587)
                     mail.ehlo()
                     mail.starttls()
+                    #change these to environ https://www.youtube.com/watch?v=iLvMYXKIcPo @ 5:11
                     mail.login('DeveloperMinsoo@gmail.com', 'DeveloperMinsoo123')
                     mail.sendmail('DeveloperMinsoo@gmail.com', 'minsooerickim@gmail.com', content)
                     mail.close()
