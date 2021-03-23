@@ -1,6 +1,11 @@
 # R-auncher
 
+#### Fully Booked State
 ![Project Image](img/booked.PNG)
+
+---
+
+#### Available State
 ![Project Image](img/available.PNG)
 
 ---
