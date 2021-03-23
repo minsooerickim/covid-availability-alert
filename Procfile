@@ -1,1 +1,1 @@
-web: gunicorn covid-availability-alert.py
+worker: python alert.py

@@ -12,10 +12,12 @@ import smtplib
 
 from os import environ
 
+from threading import Timer
+
 FROM_EMAIL = environ['FROM_EMAIL']
 FROM_PASS = environ['FROM_PASS']
-
-inputCity = input("Enter the City you want to check in the correct format (e.g Los Angeles, CA): ")
+TO_EMAIL = environ['TO_EMAIL']
+INPUT_CITY = environ['INPUT_CITY']
 
 PATH = "C:\Program Files (x86)\chromedriver.exe"
 
@@ -27,6 +29,24 @@ print("\n\n" + driver.title + "\n\n")
 link = driver.find_element_by_link_text("California")
 link.click()
 
+def checkAvail():
+    trs = table.find_elements_by_tag_name("tr")
+    for tr in trs:
+        city = tr.find_element_by_class_name("city")
+        if (city.text == INPUT_CITY):
+            status = tr.find_element_by_class_name("status")
+            print("\n" + city.text + "\nAvailability: " + status.text)
+            if (status.text == "Fully Booked"):
+                    mail = smtplib.SMTP('smtp.gmail.com', 587)
+                    mail.ehlo()
+                    mail.starttls()
+
+                    mail.login(FROM_EMAIL, FROM_PASS)
+                    mail.sendmail(FROM_EMAIL, TO_EMAIL, content)
+                    mail.close()
+                    exit()
+            Timer(10, checkAvail).start()
+
 checkVal = 0
 
 try:
@@ -34,43 +54,10 @@ try:
         EC.presence_of_element_located((By.XPATH, '//*[@id="vaccineinfo-CA"]/div/div/div/div[1]/div[2]/div/div/div[2]/div/div[6]/div/div/table/tbody'))
     )
 
-    trs = table.find_elements_by_tag_name("tr")
-    
-    for tr in trs:
-        city = tr.find_element_by_class_name("city")
-        if (city.text == inputCity):
-            status = tr.find_element_by_class_name("status")
-            print("\n" + city.text + "\nAvailability: " + status.text)
-            if (status.text == "Fully Booked"):
-                print("\n" + inputCity + " is currently fully booked :(")
-                inputEmail = input("\n" + "Would you like to receive an email when a spot becomes available? (Y/N): ")
-                if (inputEmail == "Y"):
-
-                    content = "Covid vaccine is now AVAILABLE at " + inputCity + "\n\n BOOK NOW!"
-
-                    mail = smtplib.SMTP('smtp.gmail.com', 587)
-                    mail.ehlo()
-                    mail.starttls()
-                    #change these to environ https://www.youtube.com/watch?v=iLvMYXKIcPo @ 5:11
-                    mail.login(FROM_EMAIL, FROM_PASS)
-                    mail.sendmail(FROM_EMAIL, 'minsooerickim@gmail.com', content)
-                    mail.close()
-                else:
-                    print("\nThank you for using covid-availability-alert!")
-                checkVal = 1
-                break
-            else:
-                print("\n\n" + inputCity + " is currently AVAILBLE, book your appoint now!")
-                print("\nThank you for using covid-availability-alert!")
-                exit()
-                
+    checkAvail()           
             
     if (checkVal != 1):
-        print(inputCity + " was not found! Please make sure your input was in the right format (e.g Los Angeles, CA)")
+        print(INPUT_CITY + " was not found! Please make sure your input was in the right format (e.g Los Angeles, CA)")
         exit()
 finally:
     driver.quit()
-
-
-
-
