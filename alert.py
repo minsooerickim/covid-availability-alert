@@ -14,12 +14,20 @@ from os import environ
 
 from threading import Timer
 
+chrome_options = webdriver.ChromeOptions()
+chrome_options.binary_location = environ.get("GOOGLE_CHROME_BIN")
+chrome_options.add_argument("--headless")
+chrome_options.add_argument("--disable-dev-shm-usage")
+chrome_options.add_argument("--no-sandbox")
+driver = webdriver.Chrome(executable_path=environ.get("CHROMEDRIVER_PATH"), options=chrome_options)
+
 FROM_EMAIL = environ['FROM_EMAIL']
 FROM_PASS = environ['FROM_PASS']
 TO_EMAIL = environ['TO_EMAIL']
 INPUT_CITY = environ['INPUT_CITY']
 
-driver = webdriver.Chrome('C:/Users/futur/Documents/Github/covid-availability-alert/chromedriver')
+# locally running
+# driver = webdriver.Chrome('/Users/futur/Documents/Github/covid-availability-alert/chromedriver')
 
 driver.get('https://www.cvs.com/immunizations/covid-19-vaccine')
 print("\n\n" + driver.title + "\n\n")
