@@ -14,10 +14,10 @@ from os import environ
 
 from threading import Timer
 
-FROM_EMAIL = environ['FROM_EMAIL']
-FROM_PASS = environ['FROM_PASS']
-TO_EMAIL = environ['TO_EMAIL']
-INPUT_CITY = environ['INPUT_CITY']
+FROM_EMAIL = 'DeveloperMinsoo@gmail.com'
+FROM_PASS = 'DeveloperMinsoo123'
+TO_EMAIL = 'minsooerickim@gmail.com'
+INPUT_CITY = 'Clovis, CA'
 
 PATH = "C:\Program Files (x86)\chromedriver.exe"
 
