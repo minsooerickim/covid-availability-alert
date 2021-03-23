@@ -51,7 +51,7 @@ def checkAvail():
                     mail.sendmail(FROM_EMAIL, TO_EMAIL, content)
                     mail.close()
                     print("\n" + INPUT_CITY + " is now Available! Email has been sent!")
-                    exit()
+                    sleep()
             Timer(10, checkAvail).start()
 
 checkVal = 0
