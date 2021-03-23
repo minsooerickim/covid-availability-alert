@@ -19,9 +19,7 @@ FROM_PASS = environ['FROM_PASS']
 TO_EMAIL = environ['TO_EMAIL']
 INPUT_CITY = environ['INPUT_CITY']
 
-PATH = "C:\\Users\\futur\\Documents\\Github\\covid-availability-alert\\chromedriver"
-
-driver = webdriver.Chrome(PATH)
+driver = webdriver.Chrome('C:/Users/futur/Documents/Github/covid-availability-alert/chromedriver')
 
 driver.get('https://www.cvs.com/immunizations/covid-19-vaccine')
 print("\n\n" + driver.title + "\n\n")
