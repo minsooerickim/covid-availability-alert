@@ -1,7 +1,7 @@
 # R-auncher
 
-![Project Image](/booked.PNG)
-![Project Image](/available.PNG)
+![Project Image](img/booked.PNG)
+![Project Image](img/available.PNG)
 
 ---
 
